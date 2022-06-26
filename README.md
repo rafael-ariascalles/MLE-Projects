@@ -1,5 +1,5 @@
 # MLE-Projects
-Practical Machine Learning Engineer Application
+Practical Machine Learning Engineer
 
 ### Projects
 
