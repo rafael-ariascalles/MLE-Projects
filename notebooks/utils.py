@@ -2,6 +2,7 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
+import seaborn as sns
 
 from sklearn.metrics import silhouette_samples, silhouette_score
 from sklearn.cluster import KMeans
@@ -121,3 +122,61 @@ def visualize_silhouette(max_clusters:int, X:np.ndarray, random_state:int=10) ->
             fontsize=14,
             fontweight="bold",
         )
+
+def describe_graph(name,data,transpose=False,showfliers=True):
+    """ Generate boxplot with the combination of Variable and Variable_Duration
+    Args:
+        name (str): Variable that has a Variable_Duration columns
+        data (pandas.DataFrame): Information to be use in the boxplot viz
+        transpose (boolean) = False: swift varioble x for y
+        showfliers (booolean) = True: Option to show or disable the outliers in Boxplot viz
+    """
+    x_name = name
+    y_name = "{}_Duration".format(name)
+    print("Unique values: {}".format(len(data[x_name].unique())))
+    if transpose:
+        sns.boxplot(y=x_name,x=y_name,data=data,showfliers=showfliers)
+    else:
+        sns.boxplot(x=x_name,y=y_name,data=data,showfliers=showfliers)
+
+def bar_correlation(corr_matrix,feature,threshold):
+    """ Function to viz one line of the correlation matrix with a bar plot
+        Args:
+            corr_matrix (np.array): correlation matrix of the features , can include the target variable
+            feature (str): name of the feature to calculate the graph
+            threshold (int): limit what variables to show if the correlation is not more than the given value
+    """
+    plt.figure(figsize=(15,5))
+    z = corr_matrix.drop(feature,axis=0)[feature].sort_values(ascending=False)
+    z = z[abs(z.values) > threshold]
+    sns.barplot(x=z.index, y=z.values)
+    plt.xticks(rotation=90)
+    plt.show()
+
+def histogram_boxplot(feature, figsize=(15, 5), bins=None):
+    """ Boxplot and histogram combined
+        Args:
+            feature (array): feature vector
+            figsize (tuple[int,int]): size of fig 
+            bins (int): number of bins
+    """
+    f2, (ax_box2, ax_hist2) = plt.subplots(
+        nrows=2,  # Number of rows of the subplot grid= 2
+        sharex=True,  # x-axis will be shared among all subplots
+        gridspec_kw={"height_ratios": (0.25, 0.75)},
+        figsize=figsize,
+    )  # creating the 2 subplots
+    sns.boxplot(
+        x=feature, ax=ax_box2, showmeans=True, color="violet"
+    )  # boxplot will be created and a star will indicate the mean value of the column
+    sns.distplot(
+        feature, kde=F, ax=ax_hist2, bins=bins, palette="winter"
+    ) if bins else sns.histplot(
+        feature, kde=False, ax=ax_hist2
+    )  # For histogram
+    ax_hist2.axvline(
+        np.mean(feature), color="green", linestyle="--"
+    )  # Add mean to the histogram
+    ax_hist2.axvline(
+        np.median(feature), color="black", linestyle="-"
+    )  # Add median to the histogram
