@@ -17,4 +17,4 @@ Practical Machine Learning Engineer projects build into the 16 Week Machine Lear
 
 7) [Clustering and Semi Supervised learning for customer segmentation](./notebooks/new-product-launch.ipynb): Clustering and semi-supervised learning for customer segmentation using Sklearn.
 
-8 [Fewshot Learning for Object Detection](./notebooks/few_shot_object_detection.ipynb): Fewshot Learning using PyTorch and torchvision + Finetuning .
+8) [Fewshot Learning for Object Detection](./notebooks/few_shot_object_detection.ipynb): Fewshot Learning using PyTorch and torchvision + Finetuning .
