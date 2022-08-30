@@ -7,7 +7,7 @@ Practical Machine Learning Engineer projects build into the 16 Week Machine Lear
 
 2) [Attention is all you need](./notebooks/news_article_classification.ipynb): Application of Attention Mechanism to Neural Networks for news classification, implementation using keras.
 
-3) [NLP task: TF-IDF, Word2Vec, NaiveBayes Classifier and BiLSTM](./notebooks/hate-speech-detector.ipynb) Application of different NLP techniques for Hate speech detection.
+3) [NLP task: TF-IDF, Word2Vec, NaiveBayes Classifier and BiLSTM](./notebooks/hate-speech-detector.ipynb) Application of different NLP techniques for Hate speech detection, application of Error Analysis for Label validation.
 
 4) [Fewshot Learning for Object Detection](./notebooks/few_shot_object_detection.ipynb): Fewshot Learning using PyTorch and torchvision + Finetuning .
 
